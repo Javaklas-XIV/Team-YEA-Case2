@@ -1,0 +1,8 @@
+<p>vragenlijst works!</p>
+@for (onderdeel of this.vragenlijst; track onderdeel) {
+  <p>{{onderdeel.beschrijving}}</p>
+  @for (o of onderdeel.onderdelen; track o) {
+    <p>{{o.beschrijving}}</p>
+  }
+}
+
