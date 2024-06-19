@@ -46,7 +46,7 @@ export class UserService {
 
   logout(): void {
     localStorage.removeItem('token')
-    this.router.navigate([''])
+    this.router.navigate(['login'])
   }
 
   private successfulLogin(user: User): void {
@@ -65,5 +65,11 @@ export class UserService {
       console.error(error);
       this.message$.next("Naam of wachtwoord is fout ingevoerd");
     }
+  }
+
+  register(user: User | null) {
+    this.http.post<User>(`${this.uri}/accountbeheer`, user, {observe: 'response'})
+      .subscribe();
+    this.message$.next("Account is aangemaakt")
   }
 }

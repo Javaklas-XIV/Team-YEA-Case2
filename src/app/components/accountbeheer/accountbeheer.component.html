@@ -1,15 +1,16 @@
-<!--<section class="bg-image img-responsive" style="-->
-<!--        background-image: url('https://imgur.com/COHg2RR.png');-->
-<!--        background-size:100% 100%;-->
-<!--        ">-->
-<section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
+<div class="container pt-5">
+  <app-menubar-admin></app-menubar-admin>
+</div>
+
+<div class="container pt-5">
+  <section class="vh-100 gradient-custom">
+    <div class="container">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
-              <h3 class="mb-5">Sign in</h3>
-              <form (ngSubmit)="login()" #f="ngForm">
+              <h3 class="mb-5">Nieuwe gebruiker aanmaken</h3>
+              <form (ngSubmit)="register()" #f="ngForm">
                 <div data-mdb-input-init class="form-outline mb-4">
                   <input type="text" id="username" name="username" class="form-control mb-2" required
                          #username="ngModel" [(ngModel)]="user.username">
@@ -21,14 +22,19 @@
                          #password="ngModel" [(ngModel)]="user.password">
                   <label class="form-label" for="password">Wachtwoord</label>
                 </div>
-                <div>
-                  <label class="form-label" style="color: red" for="username">{{ message$ | async }}</label>
+                <div class="form-check d-flex justify-content-start mb-2">
+                  <input class="form-check-input" type="checkbox" value="" id="admin" />
+                  <label class="form-check-label" for="admin">Admin</label>
                 </div>
-                <button [disabled]="!f.valid" class="btn btn-primary">Log in</button>
+                <button [disabled]="!f.valid" class="btn btn-primary">Registreer</button>
               </form>
+              <div>
+                <label class="form-label pt-2" style="color: #35a1fa" for="username">{{ message$ | async }}</label>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-</section>
+  </section>
+</div>
