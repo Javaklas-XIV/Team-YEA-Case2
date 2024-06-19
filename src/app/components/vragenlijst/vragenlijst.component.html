@@ -1,8 +1,19 @@
-<p>vragenlijst works!</p>
-@for (onderdeel of this.vragenlijst; track onderdeel) {
-  <p>{{onderdeel.beschrijving}}</p>
-  @for (o of onderdeel.onderdelen; track o) {
-    <p>{{o.beschrijving}}</p>
-  }
+@if (deel >= 0 && deel < vragenlijst.length) {
+  <form>
+    <p>{{ vragenlijst[deel].beschrijving }}</p>
+    @for (o of vragenlijst[deel].onderdelen; track $index) {
+      <p>{{ o.beschrijving }}</p>
+      <input>
+    }
+  </form>
 }
-
+<!--<form>-->
+<!--&lt;!&ndash;@for (onderdeel of this.vragenlijst; track onderdeel) {&ndash;&gt;-->
+<!--@for (onderdeel of this.vragenlijst; track onderdeel) {-->
+<!--  <p>{{onderdeel.beschrijving}}</p>-->
+<!--  @for (o of onderdeel.onderdelen; track o) {-->
+<!--    <p>{{o.beschrijving}}</p>-->
+<!--    <input>-->
+<!--  }-->
+<!--}-->
+<!--</form>-->
