@@ -4,6 +4,7 @@ import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, Subject, throwError} from "rxjs";
 import {mapStringToUserRole, UserRoles} from "../util/enum";
+import {jwtDecode} from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,15 @@ export class UserService {
     return localStorage.getItem('token') !== null;
   }
 
+  getUserRole(): Boolean | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.role == UserRoles.Medewerker;
+    }
+    return null;
+  }
+
   loggedInUser(): User | null {
     // @ts-ignore
     return JSON.parse(localStorage.getItem('token')) as User;
@@ -70,7 +80,6 @@ export class UserService {
 
   register(user: User) {
     if(this.isAdmin){user.role = <UserRoles>"Medewerker"}
-    console.log(user.role);
     this.http.post<User>(`${this.uri}/accountbeheer`, user, {observe: 'response'})
       .pipe(
         catchError((error) => {
