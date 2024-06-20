@@ -1,13 +1,13 @@
 export enum UserRoles{
-  Client,
-  Admin
+  Client = "Client",
+  Medewerker = "Medewerker"
 }
 export function mapStringToUserRole(role: UserRoles): UserRoles {
   switch (role.toString()) {
     case 'Client':
       return UserRoles.Client;
-    case 'Admin':
-      return UserRoles.Admin;
+    case 'Medewerker':
+      return UserRoles.Medewerker;
     default:
       throw new Error(`Unknown role: ${role}`);
   }

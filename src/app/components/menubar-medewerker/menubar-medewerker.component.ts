@@ -3,15 +3,15 @@ import {UserService} from "../../service/user.service";
 import {Router, RouterLink} from "@angular/router";
 
 @Component({
-  selector: 'app-menubar-admin',
+  selector: 'app-menubar-medewerker',
   standalone: true,
   imports: [
     RouterLink
   ],
-  templateUrl: './menubar-admin.component.html',
-  styleUrl: './menubar-admin.component.scss'
+  templateUrl: './menubar-medewerker.component.html',
+  styleUrl: './menubar-medewerker.component.scss'
 })
-export class MenubarAdminComponent {
+export class MenubarMedewerkerComponent {
 
   constructor(private userService: UserService, private router: Router) {
   }

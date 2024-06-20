@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {User} from "../domain/User";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Subject} from "rxjs";
+import {catchError, Subject, throwError} from "rxjs";
 import {mapStringToUserRole, UserRoles} from "../util/enum";
 
 @Injectable({
@@ -12,6 +12,7 @@ export class UserService {
   private uri = 'http://localhost:9080/yea-backend/users'
   public static readonly emptyUser = {username: '', password: '', role: UserRoles.Client} as User;
   public message$ = new Subject<string>();
+  public isAdmin = false;
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -55,8 +56,8 @@ export class UserService {
       if (role === UserRoles.Client) {
         this.message$.next("Welkom gebruiker!");
         this.router.navigateByUrl("home");
-      } else if (role === UserRoles.Admin) {
-        this.message$.next("Welkom admin!");
+      } else if (role === UserRoles.Medewerker) {
+        this.message$.next("Welkom Medewerker!");
         this.router.navigateByUrl("admin");
       } else {
         this.message$.next("Naam of wachtwoord is fout ingevoerd");
@@ -67,9 +68,21 @@ export class UserService {
     }
   }
 
-  register(user: User | null) {
+  register(user: User) {
+    if(this.isAdmin){user.role = <UserRoles>"Medewerker"}
+    console.log(user.role);
     this.http.post<User>(`${this.uri}/accountbeheer`, user, {observe: 'response'})
-      .subscribe();
+      .pipe(
+        catchError((error) => {
+          if (error.status === 500) {
+            this.message$.next("Gebruikers naam bestaat al");
+          } else {
+            this.message$.next("Account is aangemaakt");
+          }
+          return throwError(error);
+        })
+      )
+      .subscribe()
     this.message$.next("Account is aangemaakt")
-  }
+  };
 }

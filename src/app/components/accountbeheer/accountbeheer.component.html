@@ -1,5 +1,5 @@
 <div class="container pt-5">
-  <app-menubar-admin></app-menubar-admin>
+  <app-menubar-medewerker></app-menubar-medewerker>
 </div>
 
 <div class="container pt-5">
@@ -22,14 +22,14 @@
                          #password="ngModel" [(ngModel)]="user.password">
                   <label class="form-label" for="password">Wachtwoord</label>
                 </div>
-                <div class="form-check d-flex justify-content-start mb-2">
-                  <input class="form-check-input" type="checkbox" value="" id="admin" />
-                  <label class="form-check-label" for="admin">Admin</label>
+                <div class="form-check form-switch d-flex justify-content-start mb-2">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isAdmin" (change)="onCheckboxChange()"  name="isAdmin">
+                  <label class="form-check-label ml-2 mb-2" for="flexSwitchCheckDefault">Maak medewerker van gebruiker</label>
                 </div>
                 <button [disabled]="!f.valid" class="btn btn-primary">Registreer</button>
               </form>
               <div>
-                <label class="form-label pt-2" style="color: #35a1fa" for="username">{{ message$ | async }}</label>
+                <label class="form-label pt-2" style="color: #020000" for="username">{{ message$ | async }}</label>
               </div>
             </div>
           </div>
@@ -38,3 +38,4 @@
     </div>
   </section>
 </div>
+
