@@ -1,19 +1,61 @@
 @if (deel >= 0 && deel < vragenlijst.length) {
   <form>
-    <p>{{ vragenlijst[deel].beschrijving }}</p>
-    @for (o of vragenlijst[deel].onderdelen; track $index) {
-      <p>{{ o.beschrijving }}</p>
-      <input>
+    @if (vragenlijst[deel].type === 'F') {
+      <p>{{ vragenlijst[deel].beschrijving }}</p>
+      @for (o of vragenlijst[deel].onderdelen; track $index) {
+        <p>{{ o.beschrijving }}</p>
+        @if (o.type === 'O') {
+          <input>
+        } @else if (o.type === 'M' && $any(o).maxAantalKeuzes === 1) {
+          @for (choice of $any(o).keuzemogelijkheden; track $index) {
+            <div>
+              <input type="radio" [id]="$index" name="question">
+              <label [for]="$index">{{ choice }}</label>
+            </div>
+          }
+        } @else {
+        }
+      }
     }
   </form>
 }
-<!--<form>-->
-<!--&lt;!&ndash;@for (onderdeel of this.vragenlijst; track onderdeel) {&ndash;&gt;-->
-<!--@for (onderdeel of this.vragenlijst; track onderdeel) {-->
-<!--  <p>{{onderdeel.beschrijving}}</p>-->
-<!--  @for (o of onderdeel.onderdelen; track o) {-->
-<!--    <p>{{o.beschrijving}}</p>-->
-<!--    <input>-->
+
+
+<p>===========Test=============</p>
+<div id="form-container">{{test2()}}</div>
+
+<!--<script>-->
+<!--  function createFormElements(fields) {-->
+<!--    const fragment = document.createDocumentFragment();-->
+<!--    fields.forEach(field => {-->
+<!--      const container = document.createElement('div');-->
+<!--      container.classList.add('form-group');-->
+
+<!--      const div = document.createElement('div');-->
+<!--      div.textContent = field.beschrijving;-->
+<!--      container.appendChild(div);-->
+
+<!--      // if (field.type === 'group' && field.children) {-->
+<!--      //   const subContainer = createFormElements(field.children);-->
+<!--      //   container.appendChild(subContainer);-->
+<!--      // } else {-->
+<!--      //   const input = document.createElement('input');-->
+<!--      //   input.type = field.type;-->
+<!--      //   input.name = field.name;-->
+<!--      //   container.appendChild(input)-->
+<!--      // }-->
+
+<!--      fragment.appendChild(container);-->
+<!--    });-->
+<!--    return fragment;-->
 <!--  }-->
-<!--}-->
-<!--</form>-->
+
+<!--  // const container = document.createElementById('form-container');-->
+<!--  const container = document.getElementById('form-container');-->
+
+<!--  const formElements = createFormElements(this.vragenlijst);-->
+<!--  const form = document.createElement('form')-->
+<!--  form.appendChild(formElements);-->
+
+<!--  container.appendChild(form);-->
+<!--</script>-->

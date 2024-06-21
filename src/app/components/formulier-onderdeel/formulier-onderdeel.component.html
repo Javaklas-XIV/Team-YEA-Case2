@@ -1,0 +1,11 @@
+@for (onderdeel of getOnderdelen(); track $index) {
+  @if (onderdeel.type === 'O') {
+    <app-open-vraag></app-open-vraag>
+  } @else if (onderdeel.type === 'M') {
+    <app-meerkeuze-vraag></app-meerkeuze-vraag>
+  } @else if (onderdeel.type === 'N') {
+    <app-numerieke-vraag></app-numerieke-vraag>
+  } @else if (onderdeel.type === 'F') {
+    <app-formulier-onderdeel [formulierOnderdeel]="onderdeel" ]></app-formulier-onderdeel>
+  }
+}

@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment.development";
 import {HttpClient} from "@angular/common/http";
 import {FormulierObject} from "../model/formulier-object";
 import {VragenlijstFragment} from "../model/vragenlijst-fragment";
+import {FormulierOnderdeel} from "../model/formulier-onderdeel";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,6 @@ export class VragenlijstService {
   }
 
   getVragenlijst() {
-    return this.httpClient.get<VragenlijstFragment[]>(`${this.URL}/1`)
+    return this.httpClient.get<FormulierOnderdeel[]>(`${this.URL}/1`)
   }
 }
