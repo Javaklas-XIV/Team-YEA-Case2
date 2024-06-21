@@ -24,17 +24,26 @@ export class AccountbeheerComponent {
 
   user: User = {} as User;
   message$ = this.service.message$;
-  isAdmin = false;
+  onOff = false;
 
   register() {
-    if (this.isAdmin) {
+    if(this.onOff) {
       this.service.isAdmin = true;
+    }
+    if(!this.onOff) {
+      this.service.isAdmin = false;
     }
     this.service.register(this.user);
   }
 
   onCheckboxChange(){
-    this.isAdmin = true;
-  }
+    if (this.onOff) {
+      console.log('User is now an Admin');
+      // Additional logic for making user an admin
+    } else {
+      console.log('User is no longer an Admin');
+      // Additional logic for revoking admin status
+    }
+    }
 }
 

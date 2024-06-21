@@ -23,7 +23,7 @@
                   <label class="form-label" for="password">Wachtwoord</label>
                 </div>
                 <div class="form-check form-switch d-flex justify-content-start mb-2">
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isAdmin" (change)="onCheckboxChange()"  name="isAdmin">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="onOff" (change)="onCheckboxChange()" name="onOff">
                   <label class="form-check-label ml-2 mb-2" for="flexSwitchCheckDefault">Maak medewerker van gebruiker</label>
                 </div>
                 <button [disabled]="!f.valid" class="btn btn-primary">Registreer</button>
