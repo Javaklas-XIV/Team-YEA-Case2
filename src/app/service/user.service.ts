@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {User} from "../domain/User";
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, Subject, throwError} from "rxjs";
 import {mapStringToUserRole, UserRoles} from "../util/enum";
@@ -85,8 +85,9 @@ export class UserService {
         catchError((error) => {
           if (error.status === 500) {
             this.message$.next("Gebruikers naam bestaat al");
-          } else {
-            this.message$.next("Account is aangemaakt");
+          }
+          if (error.status === 401){
+            this.message$.next("Niet geauthoriseerd, log aub opnieuw in")
           }
           return throwError(error);
         })
@@ -95,3 +96,10 @@ export class UserService {
     this.message$.next("Account is aangemaakt")
   };
 }
+
+// const headers = new HttpHeaders({
+//   'Content-Type': 'application/json',
+// // @ts-ignore
+//   'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token')) as string,
+// })
+
