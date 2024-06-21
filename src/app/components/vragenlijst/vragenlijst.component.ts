@@ -7,11 +7,14 @@ import {Subject} from "rxjs";
 import {FormulierOnderdeel} from "../../model/formulier-onderdeel";
 import {castTo} from "../../util/cast-to";
 import {MeerkeuzeVraag} from "../../model/meerkeuze-vraag";
+import {FormulierOnderdeelComponent} from "../formulier-onderdeel/formulier-onderdeel.component";
 
 @Component({
   selector: 'app-vragenlijst',
   standalone: true,
-  imports: [],
+  imports: [
+    FormulierOnderdeelComponent
+  ],
   templateUrl: './vragenlijst.component.html',
   styleUrl: './vragenlijst.component.css'
 })
@@ -134,4 +137,8 @@ export class VragenlijstComponent {
     container?.appendChild(form);
   }
 
+
+  isFormulierOnderdeel(fo: FormulierObject): fo is FormulierOnderdeel {
+    return fo.type === 'F';
+  }
 }

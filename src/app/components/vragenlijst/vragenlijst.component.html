@@ -59,3 +59,10 @@
 
 <!--  container.appendChild(form);-->
 <!--</script>-->
+
+<p>===========Test2=============</p>
+@if (deel >= 0 && deel < vragenlijst.length) {
+    @if (isFormulierOnderdeel(vragenlijst[deel])) {
+      <app-formulier-onderdeel [formulierOnderdeel]="vragenlijst[deel]"></app-formulier-onderdeel>
+    }
+}

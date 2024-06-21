@@ -33,9 +33,23 @@ export class FormulierOnderdeelComponent {
     let length = onderdelen?.length ?? 0;
     for(i=0; i<length; i++) {
       if(onderdelen?.[i].type === 'O') {
-
       }
     }
   }
 
+  isFormulierOnderdeel(fo: FormulierObject): fo is FormulierOnderdeel {
+    return fo.type === 'F';
+  }
+
+  isMeerkeuzeVraag(fo: FormulierObject): fo is MeerkeuzeVraag {
+    return fo.type === 'M';
+  }
+
+  isNumeriekeVraag(fo: FormulierObject): fo is NumeriekeVraag {
+    return fo.type === 'N';
+  }
+
+  isOpenVraag(fo: FormulierObject): fo is OpenVraag {
+    return fo.type === 'O';
+  }
 }

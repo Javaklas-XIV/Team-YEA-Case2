@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {FormulierOnderdeel} from "../../model/formulier-onderdeel";
+import {OpenVraag} from "../../model/open-vraag";
 
 @Component({
   selector: 'app-open-vraag',
@@ -8,12 +10,9 @@ import { Component } from '@angular/core';
   styleUrl: './open-vraag.component.css'
 })
 export class OpenVraagComponent {
+  @Input() openVraag?: OpenVraag;
 
   private _beschrijving: string = "";
-
-  constructor(beschrijving: string) {
-    this._beschrijving = beschrijving;
-  }
 
   public getBeschrijving(): string {
     return this._beschrijving;
