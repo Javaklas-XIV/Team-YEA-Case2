@@ -1,2 +1,2 @@
-<div>{{ openVraag?.beschrijving }}</div>
-<input>
+<p>{{ openVraag?.beschrijving }}</p>
+<input [(ngModel)]="antwoord" (change)="stuurAntwoord()">

@@ -1,1 +1,2 @@
-<div>{{numeriekeVraag?.beschrijving}}</div>
+<p>{{numeriekeVraag?.beschrijving}}</p>
+<input [(ngModel)]="antwoord" (change)="stuurAntwoord()" type="number">

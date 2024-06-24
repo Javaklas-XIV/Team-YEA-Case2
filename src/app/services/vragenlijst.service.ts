@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {FormulierObject} from "../model/formulier-object";
 import {VragenlijstFragment} from "../model/vragenlijst-fragment";
 import {FormulierOnderdeel} from "../model/formulier-onderdeel";
+import {IngevuldeVragenlijst} from "../model/ingevulde-vragenlijst";
 
 @Injectable({
   providedIn: 'root'
@@ -19,4 +20,11 @@ export class VragenlijstService {
   getVragenlijst() {
     return this.httpClient.get<FormulierOnderdeel[]>(`${this.URL}/1`)
   }
+
+  createIngevuldeVragenlijst(iv: IngevuldeVragenlijst) {
+    console.log('create-ingevulde-vragenlijst')
+    return this.httpClient.post<IngevuldeVragenlijst>(`${this.URL}/1`, iv);
+  }
+
+
 }

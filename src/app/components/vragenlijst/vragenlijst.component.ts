@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {VragenlijstService} from "../../services/vragenlijst.service";
 import {FormulierObject} from "../../model/formulier-object";
-import {VragenlijstFragment} from "../../model/vragenlijst-fragment";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subject} from "rxjs";
 import {FormulierOnderdeel} from "../../model/formulier-onderdeel";
-import {castTo} from "../../util/cast-to";
-import {MeerkeuzeVraag} from "../../model/meerkeuze-vraag";
 import {FormulierOnderdeelComponent} from "../formulier-onderdeel/formulier-onderdeel.component";
+import {environment} from "../../../environments/environment.development";
+import {Antwoord} from "../../model/antwoord";
+import {IngevuldeVragenlijst} from "../../model/ingevulde-vragenlijst";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-vragenlijst',
@@ -19,126 +20,66 @@ import {FormulierOnderdeelComponent} from "../formulier-onderdeel/formulier-onde
   styleUrl: './vragenlijst.component.css'
 })
 export class VragenlijstComponent {
-
-  private helloMessage: string = "";
-  // protected vragenlijst: FormulierObject = {
-  //   beschrijving: ""
-  // };
   protected vragenlijst: FormulierOnderdeel[] = [];
-  protected vragenlijst$: Subject<FormulierOnderdeel[]> = new Subject<FormulierOnderdeel[]>();
-  protected vragenlijstdeel: VragenlijstFragment[] = [];
-  protected deel: number = -1;
-  protected $meerkeuzevraag = castTo<MeerkeuzeVraag>();
-  protected test: string = "<p>Dit is een test</p>"
+  protected deelParam: number = -1;
+  protected deel: number = 0;
+  private antwoordenMap = new Map<number, Antwoord>();
 
-  constructor(private route: ActivatedRoute, private service: VragenlijstService) {
-    // console.log(this.service.getVragenlijst().subscribe(
-    //   x => {console.log(this.vragenlijst)}));
-    // console.log(this.vragenlijst);
-    // this.vragenlijst = [{beschrijving: 'test', onderdelen: []}];
+  protected get deelIndex(): number {
+    return this.deelParam - 1;
+  };
+
+  constructor(private route: ActivatedRoute, private service: VragenlijstService, private router: Router) {
     this.getVragenlijst();
-    // setTimeout(() => {2});
-    console.log("vl2:", this.vragenlijst)
-    this.deel = parseInt(this.route.snapshot.queryParamMap.get('deel') ?? "")-1;
-    console.log('deel: ', this.deel)
-    // this.getVragenlijstdeel();
-    this.vragenlijst$.subscribe(v => {this.vragenlijst = v;
-      console.log('v2: ', v);
-      console.log('vr: ', this.vragenlijst)});
-    this.getVragenlijst();
-    console.log("vl3:", this.vragenlijst)
+    // this.deelParam = parseInt(this.route.snapshot.queryParamMap.get('deel') ?? "");
+    // this.deel = parseInt(this.route.snapshot.queryParamMap.get('deel') ?? "")-1;
   }
 
-
-
-  getHello() {
-    // return this.service.getHello().subscribe(m => this.helloMessage = m);
-  }
-
-  getTest() {
-
-  }
 
   getVragenlijst() {
-    return this.service.getVragenlijst().subscribe(x => {this.vragenlijst = x; console.log("vl:",this.vragenlijst)});
-    // return this.service.getVragenlijst().subscribe(
-    //   x => {next: (v: Subject<VragenlijstFragment[]>) => x});
-    // return {next(value: VragenlijstFragment[]) {() =>}
-    // this.service.getVragenlijst().subscribe(
-    //   v => {this.vragenlijst$.next(v);
-    //   console.log('v: ', v);
-    //   console.log('v$: ', this.vragenlijst$)
-    //   });
-  }
-
-  getVragenlijstdeel() {
-    console.log("vragenlijst:", this.vragenlijst)
-    console.log("deel:", this.deel)
-    console.log("lijstdeel:", this.vragenlijst[this.deel ?? 0])
-    return this.vragenlijst[this.deel ?? 0];
-  }
-
-  createFormElements(delen: FormulierOnderdeel[]) {
-    const fragment = document.createDocumentFragment();
-    console.log('fields: ', typeof delen);
-    delen.forEach((x) => {
-      console.log("x.beschrijving:", x.beschrijving);
-      const d = document.createElement('div');
-      d.textContent = x.beschrijving;
-      fragment.appendChild(d);
+    this.service.getVragenlijst().subscribe(x => {
+      this.vragenlijst = x;
     });
-
-    // fields.forEach((field.beschrijving) => {
-    //   console.log("fields.beschrijving:", fields.beschrijving)
-    //   const d = document.createElement('div');
-    //   d.textContent = fields.beschrijving;
-    //   fragment.appendChild(d);
-    // });
-
-    // for (let f:FormulierOnderdeel in fields) {
-    //   const d = document.createElement('div');
-    //   d.textContent = (f as FormulierOnderdeel).beschrijving;
-    // }
-
-    // fields.forEach((x : any) => {
-    //   console.log('field: ', x, );
-    //   const container = document.createElement('div');
-    //   // // container.classList.add('form-group');
-    //   //
-    //   // const div = document.createElement('div');
-    //   // div.textContent = field.beschrijving;
-    //   // container.appendChild(div);
-    //   const subContainer = document.createElement('div');
-    //   subContainer.textContent = x.beschrijving;
-    //   container.appendChild(subContainer);
-    //
-    //   // if (field.type === 'group' && field.children) {
-    //   //   const subContainer = createFormElements(field.children);
-    //   //   container.appendChild(subContainer);
-    //   // } else {
-    //   //   const input = document.createElement('input');
-    //   //   input.type = field.type;
-    //   //   input.name = field.name;
-    //   //   container.appendChild(input)
-    //   // }
-    //
-    //   fragment.appendChild(container);
-    // });
-    return fragment;
   }
-
-  test2() {
-    const container = document.getElementById('form-container');
-
-    const formElements = this.createFormElements(this.vragenlijst);
-    const form = document.createElement('form')
-    form.appendChild(formElements);
-
-    container?.appendChild(form);
-  }
-
 
   isFormulierOnderdeel(fo: FormulierObject): fo is FormulierOnderdeel {
     return fo.type === 'F';
   }
+
+  volgende() {
+    // this.router.navigateByUrl(`localhost:4200/vragenlijst/:id?deel=`+ ++this.deelParam);
+    // this.router.navigateByUrl(`${environment.backendUrl}/vragenlijst/:id?deel=`+ ++this.deelParam);
+    // this.router.navigate(['/vragenlijst/:id'], {queryParams: {deel: ++this.deelParam}});
+    // this.router.navigate(['/vragenlijst/:id?deel=', ++this.deelParam]);
+    this.deel++;
+  }
+
+  vorige() {
+    // this.router.navigateByUrl(`localhost:4200/vragenlijst/:id?deel=`+ --this.deelParam);
+    // this.router.navigateByUrl(`${environment.backendUrl}/vragenlijst/:id?deel=`+ --this.deelParam);
+    // this.router.navigate(['/vragenlijst/:id'], {queryParams: {deel: --this.deelParam}});
+    // this.router.navigate(['/vragenlijst/:id?deel=', --this.deelParam]);
+    this.deel--;
+  }
+
+  isDeel(x: number) {
+    return x === this.deel;
+  }
+
+  addAntwoorden(aMap: Map<number, Antwoord>) {
+    this.antwoordenMap = new Map([...this.antwoordenMap, ...aMap]);
+    console.log(this.antwoordenMap)
+  }
+
+  saveAntwoorden() {
+    console.log("save-antwoorden-1");
+    const a = Array.from(this.antwoordenMap.values());
+    const iv: IngevuldeVragenlijst = {antwoorden: a} as IngevuldeVragenlijst;
+    console.log('ingevulde lijst 1:',iv)
+    this.service.createIngevuldeVragenlijst(iv).subscribe(
+      x => console.log('ingevulde lijst 2:',x));
+    console.log("save-antwoorden-2");
+  }
+
+  protected readonly onclick = onclick;
 }

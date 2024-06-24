@@ -1,11 +1,11 @@
-<div>{{formulierOnderdeel?.beschrijving}}</div>
+<p>{{formulierOnderdeel?.beschrijving}}</p>
 @for (onderdeel of getOnderdelen(); track $index) {
   @if (isOpenVraag(onderdeel)) {
-    <app-open-vraag [openVraag]="onderdeel"></app-open-vraag>
+    <app-open-vraag [openVraag]="onderdeel" (antwoordGegeven)="addOpenAntwoord($event)"></app-open-vraag>
   } @else if (isMeerkeuzeVraag(onderdeel)) {
-    <app-meerkeuze-vraag [meerkeuzeVraag]="onderdeel"></app-meerkeuze-vraag>
+    <app-meerkeuze-vraag [meerkeuzeVraag]="onderdeel" (antwoordGegeven)="addMeerkeuzeAntwoord($event)"></app-meerkeuze-vraag>
   } @else if (isNumeriekeVraag(onderdeel)) {
-    <app-numerieke-vraag [numeriekeVraag]="onderdeel"></app-numerieke-vraag>
+    <app-numerieke-vraag [numeriekeVraag]="onderdeel" (antwoordGegeven)="addNumeriekAntwoord($event)"></app-numerieke-vraag>
   } @else if (isFormulierOnderdeel(onderdeel)) {
     <app-formulier-onderdeel [formulierOnderdeel]="onderdeel"></app-formulier-onderdeel>
   }

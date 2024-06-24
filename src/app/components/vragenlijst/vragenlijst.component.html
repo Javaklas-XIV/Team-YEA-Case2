@@ -1,68 +1,31 @@
-@if (deel >= 0 && deel < vragenlijst.length) {
-  <form>
-    @if (vragenlijst[deel].type === 'F') {
-      <p>{{ vragenlijst[deel].beschrijving }}</p>
-      @for (o of vragenlijst[deel].onderdelen; track $index) {
-        <p>{{ o.beschrijving }}</p>
-        @if (o.type === 'O') {
-          <input>
-        } @else if (o.type === 'M' && $any(o).maxAantalKeuzes === 1) {
-          @for (choice of $any(o).keuzemogelijkheden; track $index) {
-            <div>
-              <input type="radio" [id]="$index" name="question">
-              <label [for]="$index">{{ choice }}</label>
-            </div>
-          }
-        } @else {
-        }
-      }
-    }
-  </form>
-}
+<p>
+  <button [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
+  <button [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
+</p>
+<!--@if (deelIndex >= 0 && deelIndex < vragenlijst.length) {-->
+<!--  <form>-->
+<!--    @if (isFormulierOnderdeel(vragenlijst[deelIndex])) {-->
+<!--      <app-formulier-onderdeel [formulierOnderdeel]="vragenlijst[deelIndex]"></app-formulier-onderdeel>-->
+<!--    }-->
+<!--    @if (deelParam == vragenlijst.length) {-->
+<!--      <p>-->
+<!--        <button>Verstuur Antwoorden</button>-->
+<!--      </p>-->
+<!--    }-->
+<!--  </form>-->
+<!--}-->
+<form>
+  @for (onderdeel of vragenlijst; track $index) {
+    <app-formulier-onderdeel [hidden]="!isDeel($index)" [formulierOnderdeel]="onderdeel" (antwoordenGekregen)="addAntwoorden($event)"></app-formulier-onderdeel>
+  }
+</form>
+<p>
+  <button [disabled]="!isDeel(vragenlijst.length-1)" (click)="saveAntwoorden()">Verstuur antwoorden</button>
+</p>
+
+<p>
+  <button [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
+  <button [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
+</p>
 
 
-<p>===========Test=============</p>
-<div id="form-container">{{test2()}}</div>
-
-<!--<script>-->
-<!--  function createFormElements(fields) {-->
-<!--    const fragment = document.createDocumentFragment();-->
-<!--    fields.forEach(field => {-->
-<!--      const container = document.createElement('div');-->
-<!--      container.classList.add('form-group');-->
-
-<!--      const div = document.createElement('div');-->
-<!--      div.textContent = field.beschrijving;-->
-<!--      container.appendChild(div);-->
-
-<!--      // if (field.type === 'group' && field.children) {-->
-<!--      //   const subContainer = createFormElements(field.children);-->
-<!--      //   container.appendChild(subContainer);-->
-<!--      // } else {-->
-<!--      //   const input = document.createElement('input');-->
-<!--      //   input.type = field.type;-->
-<!--      //   input.name = field.name;-->
-<!--      //   container.appendChild(input)-->
-<!--      // }-->
-
-<!--      fragment.appendChild(container);-->
-<!--    });-->
-<!--    return fragment;-->
-<!--  }-->
-
-<!--  // const container = document.createElementById('form-container');-->
-<!--  const container = document.getElementById('form-container');-->
-
-<!--  const formElements = createFormElements(this.vragenlijst);-->
-<!--  const form = document.createElement('form')-->
-<!--  form.appendChild(formElements);-->
-
-<!--  container.appendChild(form);-->
-<!--</script>-->
-
-<p>===========Test2=============</p>
-@if (deel >= 0 && deel < vragenlijst.length) {
-    @if (isFormulierOnderdeel(vragenlijst[deel])) {
-      <app-formulier-onderdeel [formulierOnderdeel]="vragenlijst[deel]"></app-formulier-onderdeel>
-    }
-}
