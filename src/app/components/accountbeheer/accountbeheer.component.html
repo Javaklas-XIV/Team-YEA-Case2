@@ -3,39 +3,82 @@
 </div>
 
 <div class="container pt-5">
-  <section class="vh-100 gradient-custom">
-    <div class="container">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-              <h3 class="mb-5">Nieuwe gebruiker aanmaken</h3>
-              <form (ngSubmit)="register()" #f="ngForm">
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="text" id="username" name="username" class="form-control mb-2" required
-                         #username="ngModel" [(ngModel)]="user.username">
-                  <label class="form-label" for="username">Gebruikersnaam</label>
-                </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <section class="vh-100 gradient-custom">
+        <div class="container">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+              <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                  <h3 class="mb-5">Nieuwe gebruiker aanmaken</h3>
+                  <form (ngSubmit)="register()" #f="ngForm">
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="text" id="username" name="username" class="form-control mb-2" required
+                             #username="ngModel" [(ngModel)]="user.username">
+                      <label class="form-label" for="username">Gebruikersnaam</label>
+                    </div>
 
-                <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="password" name="password" class="form-control mb-2" required
-                         #password="ngModel" [(ngModel)]="user.password">
-                  <label class="form-label" for="password">Wachtwoord</label>
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="password" id="password" name="password" class="form-control mb-2" required
+                             #password="ngModel" [(ngModel)]="user.password">
+                      <label class="form-label" for="password">Wachtwoord</label>
+                    </div>
+                    <div class="form-check form-switch d-flex justify-content-start mb-2">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isAdmin"
+                             (change)="onCheckboxChange()" name="isAdmin">
+                      <label class="form-check-label ml-2 mb-2" for="flexSwitchCheckDefault">Maak medewerker van
+                        gebruiker</label>
+                    </div>
+                    <button [disabled]="!f.valid" class="btn btn-primary">Registreer</button>
+                  </form>
+                  <div>
+                    <label class="form-label pt-2" style="color: #020000" for="username">{{ message$ | async }}</label>
+                  </div>
                 </div>
-                <div class="form-check form-switch d-flex justify-content-start mb-2">
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="isAdmin" (change)="onCheckboxChange()"  name="isAdmin">
-                  <label class="form-check-label ml-2 mb-2" for="flexSwitchCheckDefault">Maak medewerker van gebruiker</label>
-                </div>
-                <button [disabled]="!f.valid" class="btn btn-primary">Registreer</button>
-              </form>
-              <div>
-                <label class="form-label pt-2" style="color: #020000" for="username">{{ message$ | async }}</label>
               </div>
             </div>
           </div>
         </div>
+      </section>
+    </div>
+    <div class="col-lg-8">
+      <div class="container pt-5">
+<!--        <div class="col-5">-->
+<!--          <mat-paginator [length]="totalItems" [pageIndex]="currentPage"-->
+<!--                         [showFirstLastButtons]="true" [hidePageSize]="false"-->
+<!--                         [pageSize]="pageSize"-->
+<!--                         (page)="pageChanged($event)">-->
+<!--          </mat-paginator>-->
+<!--        </div>-->
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Naam</th>
+            <th>Functie</th>
+            <th>Info</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of (subject | async)">
+            <td>{{ c.username }}</td>
+            <td>{{ c.role }}</td>
+            <td>
+              <button type="button" class="btn btn-info">Details</button>
+            </td>
+            <td>
+              <button (click)="remove(c)" type="button" class="btn btn-danger">Verwijderen</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </section>
+  </div>
 </div>
+
+
+
+
 

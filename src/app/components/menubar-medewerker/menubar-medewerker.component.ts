@@ -23,4 +23,12 @@ export class MenubarMedewerkerComponent {
   goToAccount() {
     this.router.navigateByUrl("admin/accountbeheer")
   }
+
+  goToVragenlijst() {
+    this.router.navigateByUrl("admin/vragenlijstbeheer")
+  }
+
+  goToIngevulde() {
+    this.router.navigateByUrl("admin/ingevuldebeheer")
+  }
 }
