@@ -2,21 +2,10 @@
   <button [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
   <button [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
 </p>
-<!--@if (deelIndex >= 0 && deelIndex < vragenlijst.length) {-->
-<!--  <form>-->
-<!--    @if (isFormulierOnderdeel(vragenlijst[deelIndex])) {-->
-<!--      <app-formulier-onderdeel [formulierOnderdeel]="vragenlijst[deelIndex]"></app-formulier-onderdeel>-->
-<!--    }-->
-<!--    @if (deelParam == vragenlijst.length) {-->
-<!--      <p>-->
-<!--        <button>Verstuur Antwoorden</button>-->
-<!--      </p>-->
-<!--    }-->
-<!--  </form>-->
-<!--}-->
+
 <form>
   @for (onderdeel of vragenlijst; track $index) {
-    <app-formulier-onderdeel [hidden]="!isDeel($index)" [formulierOnderdeel]="onderdeel" (antwoordenGekregen)="addAntwoorden($event)"></app-formulier-onderdeel>
+    <app-vragenlijst-onderdeel [hidden]="!isDeel($index)" [vragenlijstOnderdeel]="onderdeel" (antwoordenGekregen)="addAntwoorden($event)"></app-vragenlijst-onderdeel>
   }
 </form>
 <p>

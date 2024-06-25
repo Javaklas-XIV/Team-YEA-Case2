@@ -1,4 +1,4 @@
-import {FormulierObject} from "./formulier-object";
+import {VragenlijstObject} from "./vragenlijst-object";
 import {Vraag} from "./vraag";
 
 export interface MeerkeuzeVraag extends Vraag {
@@ -6,6 +6,6 @@ export interface MeerkeuzeVraag extends Vraag {
   minAantalKeuzes: number;
   maxAantalKeuzes: number;
   keuzemogelijkheden: string[];
-  antwoordNaarVervolgvraag: Map<number, FormulierObject>
+  antwoordNaarVervolgvraag: Map<number, VragenlijstObject>
 }
 

@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormulierOnderdeel} from "../../model/formulier-onderdeel";
 import {NumeriekeVraag} from "../../model/numerieke-vraag";
-import {OpenAntwoord} from "../../model/open-antwoord";
 import {NumeriekAntwoord} from "../../model/numeriek-antwoord";
 import {FormsModule} from "@angular/forms";
 

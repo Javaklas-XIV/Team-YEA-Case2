@@ -1,7 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormulierOnderdeel} from "../../model/formulier-onderdeel";
 import {MeerkeuzeVraag} from "../../model/meerkeuze-vraag";
-import {NumeriekAntwoord} from "../../model/numeriek-antwoord";
 import {MeerkeuzeAntwoord} from "../../model/meerkeuze-antwoord";
 
 @Component({
@@ -16,7 +14,6 @@ export class MeerkeuzeVraagComponent {
   @Output() antwoordGegeven = new EventEmitter<MeerkeuzeAntwoord>();
 
   private _antwoord: number = -1;
-  // protected _nr = this.meerkeuzeVraag?.vraagnummer ?? -1;
 
   set antwoord(index: number) {
     this._antwoord = index;

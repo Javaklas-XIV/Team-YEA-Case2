@@ -1,4 +1,4 @@
-import {FormulierObject} from "./formulier-object";
+import {VragenlijstObject} from "./vragenlijst-object";
 import {Vraag} from "./vraag";
 
 export interface NumeriekeVraag extends Vraag {

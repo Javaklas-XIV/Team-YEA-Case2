@@ -1,5 +1,5 @@
-import {FormulierObject} from "./formulier-object";
+import {VragenlijstObject} from "./vragenlijst-object";
 
-export interface Vraag extends FormulierObject {
+export interface Vraag extends VragenlijstObject {
   vraagnummer: number;
 }
