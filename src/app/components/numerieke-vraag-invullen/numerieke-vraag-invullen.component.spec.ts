@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NumeriekeVraagComponent } from './numerieke-vraag.component';
+import { NumeriekeVraagInvullenComponent } from './numerieke-vraag-invullen.component';
 
 describe('NumeriekeVraagComponent', () => {
-  let component: NumeriekeVraagComponent;
-  let fixture: ComponentFixture<NumeriekeVraagComponent>;
+  let component: NumeriekeVraagInvullenComponent;
+  let fixture: ComponentFixture<NumeriekeVraagInvullenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NumeriekeVraagComponent]
+      imports: [NumeriekeVraagInvullenComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NumeriekeVraagComponent);
+    fixture = TestBed.createComponent(NumeriekeVraagInvullenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

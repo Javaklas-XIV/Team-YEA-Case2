@@ -6,15 +6,15 @@ import {Antwoord} from "../../model/antwoord";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-open-vraag',
+  selector: 'app-open-vraag-invullen',
   standalone: true,
   imports: [
     FormsModule
   ],
-  templateUrl: './open-vraag.component.html',
-  styleUrl: './open-vraag.component.css'
+  templateUrl: './open-vraag-invullen.component.html',
+  styleUrl: './open-vraag-invullen.component.css'
 })
-export class OpenVraagComponent {
+export class OpenVraagInvullenComponent {
   @Input() openVraag?: OpenVraag;
   @Output() antwoordGegeven = new EventEmitter<OpenAntwoord>();
 

@@ -3,13 +3,13 @@ import {MeerkeuzeVraag} from "../../model/meerkeuze-vraag";
 import {MeerkeuzeAntwoord} from "../../model/meerkeuze-antwoord";
 
 @Component({
-  selector: 'app-meerkeuze-vraag',
+  selector: 'app-meerkeuze-vraag-invullen',
   standalone: true,
   imports: [],
-  templateUrl: './meerkeuze-vraag.component.html',
-  styleUrl: './meerkeuze-vraag.component.css'
+  templateUrl: './meerkeuze-vraag-invullen.component.html',
+  styleUrl: './meerkeuze-vraag-invullen.component.css'
 })
-export class MeerkeuzeVraagComponent {
+export class MeerkeuzeVraagInvullenComponent {
   @Input() meerkeuzeVraag?: MeerkeuzeVraag;
   @Output() antwoordGegeven = new EventEmitter<MeerkeuzeAntwoord>();
 

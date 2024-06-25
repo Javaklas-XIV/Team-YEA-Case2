@@ -4,15 +4,15 @@ import {NumeriekAntwoord} from "../../model/numeriek-antwoord";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-numerieke-vraag',
+  selector: 'app-numerieke-vraag-invullen',
   standalone: true,
   imports: [
     FormsModule
   ],
-  templateUrl: './numerieke-vraag.component.html',
-  styleUrl: './numerieke-vraag.component.css'
+  templateUrl: './numerieke-vraag-invullen.component.html',
+  styleUrl: './numerieke-vraag-invullen.component.css'
 })
-export class NumeriekeVraagComponent {
+export class NumeriekeVraagInvullenComponent {
   @Input() numeriekeVraag?: NumeriekeVraag;
   @Output() antwoordGegeven = new EventEmitter<NumeriekAntwoord>();
 

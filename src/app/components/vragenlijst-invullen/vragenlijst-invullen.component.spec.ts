@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VragenlijstComponent } from './vragenlijst.component';
+import { VragenlijstInvullenComponent } from './vragenlijst-invullen.component';
 
 describe('VragenlijstComponent', () => {
-  let component: VragenlijstComponent;
-  let fixture: ComponentFixture<VragenlijstComponent>;
+  let component: VragenlijstInvullenComponent;
+  let fixture: ComponentFixture<VragenlijstInvullenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VragenlijstComponent]
+      imports: [VragenlijstInvullenComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VragenlijstComponent);
+    fixture = TestBed.createComponent(VragenlijstInvullenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

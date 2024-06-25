@@ -4,26 +4,26 @@ import {VragenlijstObject} from "../../model/vragenlijst-object";
 import {OpenVraag} from "../../model/open-vraag";
 import {NumeriekeVraag} from "../../model/numerieke-vraag";
 import {MeerkeuzeVraag} from "../../model/meerkeuze-vraag";
-import {OpenVraagComponent} from "../open-vraag/open-vraag.component";
-import {MeerkeuzeVraagComponent} from "../meerkeuze-vraag/meerkeuze-vraag.component";
-import {NumeriekeVraagComponent} from "../numerieke-vraag/numerieke-vraag.component";
+import {OpenVraagInvullenComponent} from "../open-vraag-invullen/open-vraag-invullen.component";
+import {MeerkeuzeVraagInvullenComponent} from "../meerkeuze-vraag-invullen/meerkeuze-vraag-invullen.component";
+import {NumeriekeVraagInvullenComponent} from "../numerieke-vraag-invullen/numerieke-vraag-invullen.component";
 import {Antwoord} from "../../model/antwoord";
 import {OpenAntwoord} from "../../model/open-antwoord";
 import {NumeriekAntwoord} from "../../model/numeriek-antwoord";
 import {MeerkeuzeAntwoord} from "../../model/meerkeuze-antwoord";
 
 @Component({
-  selector: 'app-vragenlijst-onderdeel',
+  selector: 'app-vragenlijst-onderdeel-invullen',
   standalone: true,
   imports: [
-    OpenVraagComponent,
-    MeerkeuzeVraagComponent,
-    NumeriekeVraagComponent
+    OpenVraagInvullenComponent,
+    MeerkeuzeVraagInvullenComponent,
+    NumeriekeVraagInvullenComponent
   ],
-  templateUrl: './vragenlijst-onderdeel.component.html',
-  styleUrl: './vragenlijst-onderdeel.component.css'
+  templateUrl: './vragenlijst-onderdeel-invullen.component.html',
+  styleUrl: './vragenlijst-onderdeel-invullen.component.css'
 })
-export class VragenlijstOnderdeelComponent {
+export class VragenlijstOnderdeelInvullenComponent {
   @Input() vragenlijstOnderdeel?: VragenlijstOnderdeel;
   @Output() antwoordenGekregen = new EventEmitter<Map<number, Antwoord>>();
 

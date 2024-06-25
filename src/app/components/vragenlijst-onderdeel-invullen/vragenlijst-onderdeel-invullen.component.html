@@ -1,0 +1,12 @@
+<p>{{vragenlijstOnderdeel?.beschrijving}}</p>
+@for (onderdeel of getOnderdelen(); track $index) {
+  @if (isOpenVraag(onderdeel)) {
+    <app-open-vraag-invullen [openVraag]="onderdeel" (antwoordGegeven)="addOpenAntwoord($event)"></app-open-vraag-invullen>
+  } @else if (isMeerkeuzeVraag(onderdeel)) {
+    <app-meerkeuze-vraag-invullen [meerkeuzeVraag]="onderdeel" (antwoordGegeven)="addMeerkeuzeAntwoord($event)"></app-meerkeuze-vraag-invullen>
+  } @else if (isNumeriekeVraag(onderdeel)) {
+    <app-numerieke-vraag-invullen [numeriekeVraag]="onderdeel" (antwoordGegeven)="addNumeriekAntwoord($event)"></app-numerieke-vraag-invullen>
+  } @else if (isVragenlijstOnderdeel(onderdeel)) {
+    <app-vragenlijst-onderdeel-invullen [vragenlijstOnderdeel]="onderdeel"></app-vragenlijst-onderdeel-invullen>
+  }
+}
