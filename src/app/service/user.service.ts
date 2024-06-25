@@ -108,6 +108,10 @@ export class UserService {
     return tempObservable;
   }
 
+  findUser(ID: Number): Observable<User>{
+    return this.http.get<User>(`http://localhost:9080/yea-backend/users/${ID}`);
+  }
+
   remove(u: User) {
     return this.http.delete<User>(`http://localhost:9080/yea-backend/users/${u.ID}`);
   }

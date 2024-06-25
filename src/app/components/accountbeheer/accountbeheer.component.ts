@@ -21,12 +21,12 @@ import {MatPaginator, PageEvent} from "@angular/material/paginator";
   templateUrl: './accountbeheer.component.html',
   styleUrl: './accountbeheer.component.css'
 })
-export class AccountbeheerComponent implements OnInit{
+export class AccountbeheerComponent implements OnInit {
 
   user: User = {} as User;
   message$ = this.service.message$;
   isAdmin = false;
-  public subject: Subject <User[]>;
+  public subject: Subject<User[]>;
   $users: Observable<User[]> | undefined;
   totalItems = 100;
   pageSize = 5;
@@ -36,7 +36,7 @@ export class AccountbeheerComponent implements OnInit{
     this.subject = this.service.subject;
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getAllUsers();
   }
 
@@ -47,22 +47,28 @@ export class AccountbeheerComponent implements OnInit{
     this.service.register(this.user);
   }
 
-  onCheckboxChange(){
+  onCheckboxChange() {
     this.isAdmin = true;
   }
 
-  getAllUsers(){
+  getAllUsers() {
     this.$users = this.service.findAllUsers();
   }
 
   remove(u: User) {
-    this.service.remove(u).subscribe(() => this.getAllUsers());
+    if (confirm('Wil je deze gebruiker echt verwijderen?')) {
+      this.service.remove(u).subscribe(() => this.getAllUsers());
+    }
   }
 
   pageChanged(event: PageEvent) {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.getAllUsers()
+  }
+
+  goToDetails(u: User) {
+    this.router.navigate(['/admin/accountbeheer', u.ID])
   }
 }
 

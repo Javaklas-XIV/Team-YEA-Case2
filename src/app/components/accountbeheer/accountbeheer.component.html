@@ -43,6 +43,9 @@
       </section>
     </div>
     <div class="col-lg-8">
+      <div class="container">
+        <h2 class="mb-0 fw-bold fs-4">Lijst van alle accounts:</h2>
+      </div>
       <div class="container pt-5">
 <!--        <div class="col-5">-->
 <!--          <mat-paginator [length]="totalItems" [pageIndex]="currentPage"-->
@@ -51,6 +54,7 @@
 <!--                         (page)="pageChanged($event)">-->
 <!--          </mat-paginator>-->
 <!--        </div>-->
+
         <table class="table table-striped">
           <thead>
           <tr>
@@ -61,14 +65,14 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let c of (subject | async)">
-            <td>{{ c.username }}</td>
-            <td>{{ c.role }}</td>
+          <tr *ngFor="let u of (subject | async)">
+            <td>{{ u.username }}</td>
+            <td>{{ u.role }}</td>
             <td>
-              <button type="button" class="btn btn-info">Details</button>
+              <button (click)="goToDetails(u)" type="button" class="btn btn-info">Details</button>
             </td>
             <td>
-              <button (click)="remove(c)" type="button" class="btn btn-danger">Verwijderen</button>
+              <button (click)="remove(u)" type="button" class="btn btn-danger">Verwijderen</button>
             </td>
           </tr>
           </tbody>
