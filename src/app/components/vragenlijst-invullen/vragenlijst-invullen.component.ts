@@ -6,12 +6,14 @@ import {VragenlijstOnderdeel} from "../../model/vragenlijst-onderdeel";
 import {VragenlijstOnderdeelInvullenComponent} from "../vragenlijst-onderdeel-invullen/vragenlijst-onderdeel-invullen.component";
 import {Antwoord} from "../../model/antwoord";
 import {IngevuldeVragenlijst} from "../../model/ingevulde-vragenlijst";
+import {MenubarMedewerkerComponent} from "../menubar-medewerker/menubar-medewerker.component";
 
 @Component({
   selector: 'app-vragenlijst-invullen',
   standalone: true,
   imports: [
-    VragenlijstOnderdeelInvullenComponent
+    VragenlijstOnderdeelInvullenComponent,
+    MenubarMedewerkerComponent
   ],
   templateUrl: './vragenlijst-invullen.component.html',
   styleUrl: './vragenlijst-invullen.component.css'
