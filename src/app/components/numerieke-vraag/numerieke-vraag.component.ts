@@ -21,7 +21,7 @@ export class NumeriekeVraagComponent {
   protected antwoord: number = 0;
 
   stuurAntwoord() {
-    let numeriekAntwoord: NumeriekAntwoord = {antwoord: this.antwoord, vraagID: this.numeriekeVraag?.vraagnummer ?? -1};
+    let numeriekAntwoord: NumeriekAntwoord = {antwoord: this.antwoord, vraagID: this.numeriekeVraag?.vraagnummer ?? -1, type: "N"};
     this.antwoordGegeven.emit(numeriekAntwoord);
   }
 }

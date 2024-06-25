@@ -30,7 +30,7 @@ export class OpenVraagComponent {
   }
 
   stuurAntwoord() {
-    let openAntwoord: OpenAntwoord = {antwoord: this.antwoord, vraagID: this.openVraag?.vraagnummer ?? -1};
+    let openAntwoord: OpenAntwoord = {antwoord: this.antwoord, vraagID: this.openVraag?.vraagnummer ?? -1, type:"O"};
     this.antwoordGegeven.emit(openAntwoord);
   }
 }

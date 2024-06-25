@@ -27,7 +27,7 @@ export class MeerkeuzeVraagComponent {
   }
 
   stuurAntwoord() {
-    let meerkeuzeAntwoord: MeerkeuzeAntwoord = {antwoord: [this._antwoord], vraagID: this.meerkeuzeVraag?.vraagnummer ?? -1};
+    let meerkeuzeAntwoord: MeerkeuzeAntwoord = {antwoord: [this._antwoord], vraagID: this.meerkeuzeVraag?.vraagnummer ?? -1, type: "M"};
     this.antwoordGegeven.emit(meerkeuzeAntwoord);
   }
 }
