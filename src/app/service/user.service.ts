@@ -81,6 +81,7 @@ export class UserService {
 
   register(user: User) {
     if(this.isAdmin){user.role = <UserRoles>"Medewerker"}
+    if(!this.isAdmin){user.role = <UserRoles>"Client"}
     this.http.post<User>(`${this.uri}/accountbeheer`, user, {observe: 'response'})
       .pipe(
         catchError((error) => {
