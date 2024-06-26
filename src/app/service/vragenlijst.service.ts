@@ -15,9 +15,6 @@ export class VragenlijstService {
     return this.httpClient.get<VragenlijstOnderdeel[]>(`${this.URL}/1`)
   }
 
-  createIngevuldeVragenlijst(iv: IngevuldeVragenlijst) {
-    return this.httpClient.post<IngevuldeVragenlijst>(`${this.URL}/1`, iv);
-  }
 
 
 }

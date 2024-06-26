@@ -7,6 +7,7 @@ import {VragenlijstOnderdeelInvullenComponent} from "../vragenlijst-onderdeel-in
 import {Antwoord} from "../../model/antwoord";
 import {IngevuldeVragenlijst} from "../../model/ingevulde-vragenlijst";
 import {MenubarMedewerkerComponent} from "../menubar-medewerker/menubar-medewerker.component";
+import {IngevuldeVragenlijstService} from "../../service/ingevulde-vragenlijst.service";
 
 @Component({
   selector: 'app-vragenlijst-invullen',
@@ -28,12 +29,12 @@ export class VragenlijstInvullenComponent {
     return this.deelParam - 1;
   };
 
-  constructor(private route: ActivatedRoute, private service: VragenlijstService, private router: Router) {
+  constructor(private route: ActivatedRoute, private vServ: VragenlijstService, private ivServ: IngevuldeVragenlijstService, private router: Router) {
     this.getVragenlijst();
   }
 
   getVragenlijst() {
-    this.service.getVragenlijst().subscribe(x => {
+    this.vServ.getVragenlijst().subscribe(x => {
       this.vragenlijst = x;
     });
   }
@@ -61,6 +62,6 @@ export class VragenlijstInvullenComponent {
   saveAntwoorden() {
     const a = Array.from(this.antwoordenMap.values());
     const iv: IngevuldeVragenlijst = {antwoorden: a} as IngevuldeVragenlijst;
-    this.service.createIngevuldeVragenlijst(iv).subscribe();
+    this.ivServ.createIngevuldeVragenlijst(iv).subscribe();
   }
 }

@@ -1,5 +1,8 @@
-<div class="">
-  <div class="button">
+<div class="container pt-5">
+  <app-menubar-medewerker></app-menubar-medewerker>
+</div>
+<div class="container pt-5">
+  <div class="">
     <p>
       <button class="btn btn-secondary" [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
       <button class="btn btn-primary" [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
@@ -13,7 +16,9 @@
     </form>
     <div class="button">
       <p>
-        <button class="btn btn-warning" [disabled]="!isDeel(vragenlijst.length-1)" (click)="saveAntwoorden()">Verstuur antwoorden</button>
+        <button class="btn btn-warning" [disabled]="!isDeel(vragenlijst.length-1)" (click)="saveAntwoorden()">Verstuur
+          antwoorden
+        </button>
       </p>
     </div>
     <p>
