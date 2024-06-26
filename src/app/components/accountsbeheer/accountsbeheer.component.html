@@ -1,0 +1,95 @@
+<div class="container pt-5">
+  <app-menubar-medewerker></app-menubar-medewerker>
+</div>
+
+<div class="container mt-4">
+  <h3 class="mb-4">User Details</h3>
+  <ul class="list-group" *ngIf="user$ | async as user">
+    <li class="list-group-item" *ngIf="user.username">
+      <strong>Username:</strong> {{ user.username }}
+    </li>
+    <li class="list-group-item" *ngIf="user.role">
+      <strong>Role:</strong> {{ user.role }}
+    </li>
+    <li class="list-group-item">
+      <div class="container mt-4">
+        <h6 class="mb-4">Toegekende Vragenlijsten: </h6>
+        <ul class="list-group" *ngIf="ingevuldeVragenlijst$ | async as ingevuldeVragenlijst">
+          <li class="list-group-item mb-3" *ngFor="let i of ingevuldeVragenlijst">
+            <div class="row">
+              <div class="col-md-3">
+                <strong>Ingevulde vragenlijst ID:</strong>
+              </div>
+              <div class="col-md-9">
+                {{ i.id }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <strong>Datum van aanmaak:</strong>
+              </div>
+              <div class="col-md-9">
+                {{ i.date }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <strong>Vragenlijst naam:</strong>
+              </div>
+              <div class="col-md-9">
+                {{ i.vragenlijst_naam }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <strong>Vragenlijst ID:</strong>
+              </div>
+              <div class="col-md-9">
+                {{ i.vragenlijst_id }}
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!--      <li class="list-group-item" *ngFor="let i of (ingevuldeVragenlijst$ | async)">-->
+<!--        <div>Ingevulde vragenlijst id: {{ i.id }}</div>-->
+<!--        <div>Datum van aanmaak: {{ i.date }}</div>-->
+<!--        <div>Vragenlijst naam: {{i.vragenlijst_naam}}</div>-->
+<!--        <div>Vragenlijst id: {{i.vragenlijst_id}}</div>-->
+<!--    </li>-->
+  </ul>
+</div>
+
+<div class="container mt-4">
+  <h5 class="mb-4">Vragenlijsten toekennen:</h5>
+  <table class="table table-striped">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Naam</th>
+      <th scope="col">Datum van aanmaak</th>
+      <th scope="col">Aan/Uit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let v of (vragenlijst$ | async)">
+      <td>{{ v.id }}</td>
+      <td>{{ v.name }}</td>
+      <td>{{ v.date }}</td>
+      <td>
+        <div class="form-check form-switch d-flex justify-content-start mb-2">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="checkboxStates[v.id]"
+                 (change)="onCheckboxChange(v.id)">
+        </div>
+      </td>
+    </tr>
+    </tbody>
+    <button (click)="save()" type="button" class="btn btn-outline-primary" id="button">Save</button>
+    <div>
+      <label class="form-label pt-2" style="color: #020000" for="button">{{ message$ | async }}</label>
+    </div>
+  </table>
+</div>
+
+

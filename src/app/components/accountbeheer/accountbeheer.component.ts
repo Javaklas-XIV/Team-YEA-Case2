@@ -50,7 +50,6 @@ export class AccountbeheerComponent implements OnInit {
   }
 
   onCheckboxChange() {
-    console.log(this.isAdmin)
   }
 
   getAllUsers() {
