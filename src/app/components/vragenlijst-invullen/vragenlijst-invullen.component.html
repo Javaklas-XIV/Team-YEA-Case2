@@ -1,0 +1,24 @@
+<div class="">
+  <div class="button">
+    <p>
+      <button class="btn btn-secondary" [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
+      <button class="btn btn-primary" [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
+    </p>
+
+    <form>
+      @for (onderdeel of vragenlijst; track $index) {
+        <app-vragenlijst-onderdeel-invullen [hidden]="!isDeel($index)" [vragenlijstOnderdeel]="onderdeel"
+                                            (antwoordenGekregen)="addAntwoorden($event)"></app-vragenlijst-onderdeel-invullen>
+      }
+    </form>
+    <div class="button">
+      <p>
+        <button class="btn btn-warning" [disabled]="!isDeel(vragenlijst.length-1)" (click)="saveAntwoorden()">Verstuur antwoorden</button>
+      </p>
+    </div>
+    <p>
+      <button class="btn btn-secondary" [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
+      <button class="btn btn-primary" [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
+    </p>
+  </div>
+</div>

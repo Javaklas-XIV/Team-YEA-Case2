@@ -1,0 +1,9 @@
+<p>{{ meerkeuzeVraag?.beschrijving }}</p>
+@if (meerkeuzeVraag?.maxAantalKeuzes === 1) {
+  @for (choice of meerkeuzeVraag?.keuzemogelijkheden; track $index) {
+    <div>
+      <input class="form-check-inline form-check-input" type="radio" [id]="$index" (click)="antwoord = $index" (change)="stuurAntwoord()" name={{vraagnummer}}>
+      <label class="form-check-label" [for]="$index">{{ choice }}</label>
+    </div>
+  }
+}

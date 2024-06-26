@@ -6,13 +6,12 @@ import {MedewerkerOverzichtComponent} from "./components/medewerker-overzicht/me
 import {AccountbeheerComponent} from "./components/accountbeheer/accountbeheer.component";
 import {authGuardClient} from "./guards/authGuardClient";
 import {authGuardMedewerker} from "./guards/authGuardMedewerker";
-import {
-  MedewerkerVragenlijstBeheerComponent
-} from "./components/medewerker-vragenlijst-beheer/medewerker-vragenlijst-beheer.component";
-import {
-  MedewerkerIngevuldeBeheerComponent
-} from "./components/medewerker-ingevulde-beheer/medewerker-ingevulde-beheer.component";
+import {MedewerkerVragenlijstBeheerComponent} from "./components/medewerker-vragenlijst-beheer/medewerker-vragenlijst-beheer.component";
+import {MedewerkerIngevuldeBeheerComponent} from "./components/medewerker-ingevulde-beheer/medewerker-ingevulde-beheer.component";
 import {AccountsbeheerComponent} from "./components/accountsbeheer/accountsbeheer.component";
+import {VragenlijstInvullenComponent} from "./components/vragenlijst-invullen/vragenlijst-invullen.component";
+import {AppComponent} from "./app.component";
+
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,9 +21,10 @@ export const routes: Routes = [
   {path: 'admin/accountbeheer/:ID', component: AccountsbeheerComponent, canActivate: [authGuardMedewerker]},
   {path: 'admin/vragenlijstbeheer', component: MedewerkerVragenlijstBeheerComponent, canActivate: [authGuardMedewerker]},
   {path: 'admin/ingevuldebeheer', component: MedewerkerIngevuldeBeheerComponent, canActivate: [authGuardMedewerker]},
-  {path: 'admin', component: MedewerkerOverzichtComponent, canActivate: [authGuardMedewerker]}
+  {path: 'admin', component: MedewerkerOverzichtComponent, canActivate: [authGuardMedewerker]},
+  {path: 'vragenlijst/:id', component: VragenlijstInvullenComponent}
 ];
-
+``
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
