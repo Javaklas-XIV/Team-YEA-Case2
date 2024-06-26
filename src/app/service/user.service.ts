@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {User} from "../domain/User";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {catchError, Subject, throwError} from "rxjs";
+import {catchError, Observable, Subject, throwError} from "rxjs";
 import {mapStringToUserRole, UserRoles} from "../util/enum";
 import {jwtDecode} from "jwt-decode";
+import {Vragenlijst} from "../domain/Vragenlijst";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class UserService {
   public static readonly emptyUser = {username: '', password: '', role: UserRoles.Client} as User;
   public message$ = new Subject<string>();
   public isAdmin = false;
+  private _subject: Subject<User[]> = new Subject();
 
   constructor(private http: HttpClient, private router: Router) {
   }
@@ -40,6 +42,7 @@ export class UserService {
   isLoggedIn() {
     return localStorage.getItem('token') !== null;
   }
+
 
   getUserRole(): Boolean | null {
     const token = localStorage.getItem('token');
@@ -93,9 +96,28 @@ export class UserService {
           return throwError(error);
         })
       )
-      .subscribe()
+      .subscribe(() => this.findAllUsers());
     this.message$.next("Account is aangemaakt")
   };
+
+  get subject(){
+    return this._subject
+  }
+
+  findAllUsers(): Observable<User[]> {
+    let tempObservable = this.http.get<User[]>('http://localhost:9080/yea-backend/users');
+    tempObservable.subscribe(result => this._subject.next(result));
+    return tempObservable;
+  }
+
+  findUser(ID: Number): Observable<User>{
+    return this.http.get<User>(`http://localhost:9080/yea-backend/users/${ID}`);
+  }
+
+  remove(u: User) {
+    return this.http.delete<User>(`http://localhost:9080/yea-backend/users/${u.ID}`);
+  }
+
 }
 
 // const headers = new HttpHeaders({

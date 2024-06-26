@@ -1,0 +1,14 @@
+<div class="container pt-5">
+  <app-menubar-medewerker></app-menubar-medewerker>
+</div>
+<div class="container pt-5">
+  <h6> Hier moet nog iets komen :) </h6>
+  <td>
+    <button (click)="addVragenlijst()" type="button" class="btn btn-info">
+      Nieuwe vragenlijst toevoegen
+      <i class ="bi bi-x"></i>
+    </button>
+    <div id="message">
+      <label class="form-label pt-2" style="color: #0000ff" for="message">{{ message$ | async }}</label>
+    </div>
+</div>
