@@ -15,12 +15,9 @@ export class VragenlijstService {
 
   private _vSubject: Subject<Vragenlijst[]> = new Subject();
   URL = `${environment.backendUrl}/vragenlijsten`;
+  public message$ = new Subject<string>();
 
   constructor(private httpClient: HttpClient, private router: Router) {}
-
-  get vSubject(){
-    return this._vSubject;
-  }
 
   findVragenlijsten(): Observable<Vragenlijst[]>{
     let tempObservable = this.httpClient.get<Vragenlijst[]>(`${'http://localhost:9080/yea-backend/vragenlijsten'}`);
@@ -37,5 +34,10 @@ export class VragenlijstService {
     return this.httpClient.post<IngevuldeVragenlijst>(`${this.URL}/1`, iv);
   }
 
+  addDefaultVragenlijst() {
+    this.message$.next("Nieuwe default vragenlijst is aangemaakt")
+    return this.httpClient.post<Vragenlijst>(`${this.URL}/default`, {observe: 'response'})
+      .subscribe();
+  }
 }
 

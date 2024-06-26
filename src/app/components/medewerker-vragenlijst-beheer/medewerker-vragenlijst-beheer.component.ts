@@ -4,23 +4,29 @@ import {User} from "../../domain/User";
 import {Subject} from "rxjs";
 import {UserService} from "../../service/user.service";
 import {Router} from "@angular/router";
+import {VragenlijstService} from "../../service/vragenlijst.service";
+import {AsyncPipe} from "@angular/common";
 
 @Component({
   selector: 'app-medewerker-vragenlijst-beheer',
   standalone: true,
   imports: [
-    MenubarMedewerkerComponent
+    MenubarMedewerkerComponent,
+    AsyncPipe
   ],
   templateUrl: './medewerker-vragenlijst-beheer.component.html',
   styleUrl: './medewerker-vragenlijst-beheer.component.css'
 })
 export class MedewerkerVragenlijstBeheerComponent implements OnInit {
-  // public subject: Subject <User[]>;
+  message$ = this.service.message$;
 
-  constructor(private userService: UserService, private router: Router) {
-    // this.subject = this.userService.subject;
+  constructor(private service: VragenlijstService, private router: Router) {
   }
 
   ngOnInit(): void {
+  }
+
+  addVragenlijst() {
+    this.service.addDefaultVragenlijst();
   }
 }
