@@ -1,5 +1,7 @@
 export interface Vragenlijst{
-  ID: number;
+  id: number;
   name: string;
   date: Date;
+  formulierOnderdeel: number;
+  nextId: number;
 }

@@ -43,12 +43,14 @@ export class AccountbeheerComponent implements OnInit {
   register() {
     if (this.isAdmin) {
       this.service.isAdmin = true;
+    } else {
+      this.service.isAdmin = false;
     }
     this.service.register(this.user);
   }
 
   onCheckboxChange() {
-    this.isAdmin = true;
+    console.log(this.isAdmin)
   }
 
   getAllUsers() {

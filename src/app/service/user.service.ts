@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {catchError, Observable, Subject, throwError} from "rxjs";
 import {mapStringToUserRole, UserRoles} from "../util/enum";
 import {jwtDecode} from "jwt-decode";
+import {Vragenlijst} from "../domain/Vragenlijst";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,10 @@ export class UserService {
 
   isLoggedIn() {
     return localStorage.getItem('token') !== null;
+  }
+
+  getID(){
+    return
   }
 
   getUserRole(): Boolean | null {
@@ -115,6 +120,7 @@ export class UserService {
   remove(u: User) {
     return this.http.delete<User>(`http://localhost:9080/yea-backend/users/${u.ID}`);
   }
+
 }
 
 // const headers = new HttpHeaders({

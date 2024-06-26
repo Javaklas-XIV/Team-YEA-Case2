@@ -6,4 +6,5 @@ export interface User{
   password: string;
   role: UserRoles;
   token: string;
+  ingevuldeLijsten: string;
 }
