@@ -43,9 +43,6 @@ export class UserService {
     return localStorage.getItem('token') !== null;
   }
 
-  getID(){
-    return
-  }
 
   getUserRole(): Boolean | null {
     const token = localStorage.getItem('token');

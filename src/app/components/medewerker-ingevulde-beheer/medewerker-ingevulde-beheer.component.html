@@ -1,6 +1,40 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
 <div class="container pt-5">
   <app-menubar-medewerker></app-menubar-medewerker>
 </div>
 <div class="container pt-5">
-  Hallo :)
+  <h5 class="mb-5">Ingevulde Vragenlijsten</h5>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Client naam</th>
+      <th>Ingevulde vragenlijst ID</th>
+      <th>Datum van aanmaak</th>
+      <th>Vragenlijst naam</th>
+      <th>Vragenlijst ID</th>
+      <th>Bewerken</th>
+      <th>Verwijderen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let i of (subject | async)">
+      <td>{{ i.name }}</td>
+      <td>{{ i.ingevulde_vragenlijst_id }}</td>
+      <td>{{ i.date }}</td>
+      <td>{{ i.vragenlijst_naam }}</td>
+      <td>{{ i.vragenlijst_id }}</td>
+      <td>
+        <button type="button" class="btn btn-info">
+          <i class="bi bi-pencil"></i>
+        </button>
+      </td>
+      <td>
+        <button (click)="remove(i)" type="button" class="btn btn-danger">
+        <i class ="bi bi-x"></i>
+        </button>
+      </td>
+<!--      (click)="remove(u)"-->
+    </tr>
+    </tbody>
+  </table>
 </div>
