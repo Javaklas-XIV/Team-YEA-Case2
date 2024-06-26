@@ -26,13 +26,10 @@ export class VragenlijstService {
   }
 
 
-  getVragenlijst() {
-    return this.httpClient.get<VragenlijstOnderdeel[]>(`${this.URL}/1`)
+  getVragenlijst(id: number) {
+    return this.httpClient.get<VragenlijstOnderdeel[]>(`${this.URL}/${id}`)
   }
 
-  createIngevuldeVragenlijst(iv: IngevuldeVragenlijst) {
-    return this.httpClient.post<IngevuldeVragenlijst>(`${this.URL}/1`, iv);
-  }
 
   addDefaultVragenlijst() {
     this.message$.next("Nieuwe default vragenlijst is aangemaakt")

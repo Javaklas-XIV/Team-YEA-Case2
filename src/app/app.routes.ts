@@ -11,6 +11,10 @@ import {MedewerkerIngevuldeBeheerComponent} from "./components/medewerker-ingevu
 import {AccountsbeheerComponent} from "./components/accountsbeheer/accountsbeheer.component";
 import {VragenlijstInvullenComponent} from "./components/vragenlijst-invullen/vragenlijst-invullen.component";
 import {AppComponent} from "./app.component";
+import {AccountbeheerClientComponent} from "./components/accountbeheer-client/accountbeheer-client.component";
+import {
+  VragenlijstenOverzichtClientComponent
+} from "./components/vragenlijsten-overzicht-client/vragenlijsten-overzicht-client.component";
 
 
 export const routes: Routes = [
@@ -22,6 +26,8 @@ export const routes: Routes = [
   {path: 'admin/vragenlijstbeheer', component: MedewerkerVragenlijstBeheerComponent, canActivate: [authGuardMedewerker]},
   {path: 'admin/ingevuldebeheer', component: MedewerkerIngevuldeBeheerComponent, canActivate: [authGuardMedewerker]},
   {path: 'admin', component: MedewerkerOverzichtComponent, canActivate: [authGuardMedewerker]},
+  {path: 'account', component: AccountbeheerClientComponent, canActivate: [authGuardClient]},
+  {path: 'uwvragenlijsten', component: VragenlijstenOverzichtClientComponent, canActivate: [authGuardClient]},
   {path: 'vragenlijst/:id', component: VragenlijstInvullenComponent}
 ];
 ``

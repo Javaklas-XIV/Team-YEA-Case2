@@ -25,6 +25,7 @@ import {MeerkeuzeAntwoord} from "../../model/meerkeuze-antwoord";
 })
 export class VragenlijstOnderdeelInvullenComponent {
   @Input() vragenlijstOnderdeel?: VragenlijstOnderdeel;
+  @Input() antwoorden?: Map<number,Antwoord>;
   @Output() antwoordenGekregen = new EventEmitter<Map<number, Antwoord>>();
 
   private antwoordenMap = new Map<number, Antwoord>();

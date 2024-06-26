@@ -7,15 +7,19 @@
       <div class="row">
         @if (isOpenVraag(onderdeel)) {
           <app-open-vraag-invullen [openVraag]="onderdeel"
+                                   [antwoorden]="antwoorden"
                                    (antwoordGegeven)="addOpenAntwoord($event)"></app-open-vraag-invullen>
         } @else if (isMeerkeuzeVraag(onderdeel)) {
           <app-meerkeuze-vraag-invullen [meerkeuzeVraag]="onderdeel"
+                                        [antwoorden]="antwoorden"
                                         (antwoordGegeven)="addMeerkeuzeAntwoord($event)"></app-meerkeuze-vraag-invullen>
         } @else if (isNumeriekeVraag(onderdeel)) {
           <app-numerieke-vraag-invullen [numeriekeVraag]="onderdeel"
+                                        [antwoorden]="antwoorden"
                                         (antwoordGegeven)="addNumeriekAntwoord($event)"></app-numerieke-vraag-invullen>
         } @else if (isVragenlijstOnderdeel(onderdeel)) {
-          <app-vragenlijst-onderdeel-invullen [vragenlijstOnderdeel]="onderdeel"></app-vragenlijst-onderdeel-invullen>
+          <app-vragenlijst-onderdeel-invullen [antwoorden]="antwoorden"
+            [vragenlijstOnderdeel]="onderdeel"></app-vragenlijst-onderdeel-invullen>
         }
       </div>
     }

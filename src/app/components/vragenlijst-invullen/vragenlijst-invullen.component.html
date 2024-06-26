@@ -1,24 +1,31 @@
-<div class="">
-  <div class="button">
+<div class="container pt-5">
+  <app-menubar-client></app-menubar-client>
+</div>
+<div class="container pt-5">
+  <div class="">
     <p>
       <button class="btn btn-secondary" [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
-      <button class="btn btn-primary" [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
+      <button class="btn btn-primary" [disabled]="deel >= ingevuldeVragenlijst.vragenLijstDto.formulierOnderdeel.onderdelen.length-1" (click)="volgende()">Volgende</button>
     </p>
-
     <form>
-      @for (onderdeel of vragenlijst; track $index) {
-        <app-vragenlijst-onderdeel-invullen [hidden]="!isDeel($index)" [vragenlijstOnderdeel]="onderdeel"
-                                            (antwoordenGekregen)="addAntwoorden($event)"></app-vragenlijst-onderdeel-invullen>
+      @for (onderdeel of ingevuldeVragenlijst.vragenLijstDto.formulierOnderdeel.onderdelen; track $index) {
+        @if (isVragenlijstOnderdeel(onderdeel)) {
+          <app-vragenlijst-onderdeel-invullen [hidden]="!isDeel($index)" [vragenlijstOnderdeel]="onderdeel"
+                                              [antwoorden]="antwoordenMap"
+                                              (antwoordenGekregen)="addAntwoorden($event)"></app-vragenlijst-onderdeel-invullen>
+        }
       }
     </form>
     <div class="button">
       <p>
-        <button class="btn btn-warning" [disabled]="!isDeel(vragenlijst.length-1)" (click)="saveAntwoorden()">Verstuur antwoorden</button>
+        <button class="btn btn-warning" [disabled]="!isDeel(ingevuldeVragenlijst.vragenLijstDto.formulierOnderdeel.onderdelen.length-1)" (click)="saveAntwoorden()">Verstuur
+          antwoorden
+        </button>
       </p>
     </div>
     <p>
       <button class="btn btn-secondary" [disabled]="deel <= 0" (click)="vorige()">Vorige</button>
-      <button class="btn btn-primary" [disabled]="deel >= vragenlijst.length-1" (click)="volgende()">Volgende</button>
+      <button class="btn btn-primary" [disabled]="deel >= ingevuldeVragenlijst.vragenLijstDto.formulierOnderdeel.onderdelen.length-1" (click)="volgende()">Volgende</button>
     </p>
   </div>
 </div>
