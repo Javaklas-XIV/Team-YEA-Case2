@@ -25,12 +25,10 @@ export class AccountbeheerComponent implements OnInit {
 
   user: User = {} as User;
   message$ = this.service.message$;
+  deleteMessage$ = new Subject<string>();
   isAdmin = false;
   public subject: Subject<User[]>;
   $users: Observable<User[]> | undefined;
-  totalItems = 100;
-  pageSize = 5;
-  currentPage = 0;
 
   constructor(private service: UserService, private router: Router) {
     this.subject = this.service.subject;
@@ -41,7 +39,7 @@ export class AccountbeheerComponent implements OnInit {
   }
 
   register() {
-    if (this.isAdmin) {
+    if(this.isAdmin) {
       this.service.isAdmin = true;
     } else {
       this.service.isAdmin = false;
@@ -59,17 +57,18 @@ export class AccountbeheerComponent implements OnInit {
   remove(u: User) {
     if (confirm('Wil je deze gebruiker echt verwijderen?')) {
       this.service.remove(u).subscribe(() => this.getAllUsers());
+      // if (this.getUser(u) !== undefined) {
+      //   this.deleteMessage$.next("Gebruiker heeft nog ingevulde vragenlijsten!")
+      // }
     }
-  }
-
-  pageChanged(event: PageEvent) {
-    this.currentPage = event.pageIndex;
-    this.pageSize = event.pageSize;
-    this.getAllUsers()
   }
 
   goToDetails(u: User) {
     this.router.navigate(['/admin/accountbeheer', u.ID])
+  }
+
+  private getUser(u: User) {
+    return this.service.findUser(u.ID);
   }
 }
 
