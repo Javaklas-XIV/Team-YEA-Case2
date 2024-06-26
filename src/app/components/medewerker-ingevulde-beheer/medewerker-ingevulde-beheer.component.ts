@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MenubarMedewerkerComponent} from "../menubar-medewerker/menubar-medewerker.component";
 import {AsyncPipe, NgForOf} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {VragenlijstService} from "../../service/vragenlijst.service";
 import {IngevuldevragenlijstService} from "../../service/ingevuldevragenlijst.service";
@@ -28,7 +28,8 @@ export class MedewerkerIngevuldeBeheerComponent implements OnInit{
   constructor(private route: ActivatedRoute,
               private service: UserService,
               private vService: VragenlijstService,
-              private iService: IngevuldevragenlijstService
+              private iService: IngevuldevragenlijstService,
+              private router:Router
   ) {this.subject = this.iService.subjectAll;}
 
   ngOnInit() {
@@ -43,5 +44,9 @@ export class MedewerkerIngevuldeBeheerComponent implements OnInit{
 
   private getAllIngevuldeVragenLijsten() {
     return this.iService.getAlleIngevuldeVragenlijsten()
+  }
+
+  public clickEdit(id:number){
+    this.router.navigate([`vragenlijstMedewerker/${id}`]);
   }
 }

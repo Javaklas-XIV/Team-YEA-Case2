@@ -24,7 +24,7 @@
       <td>{{ i.vragenlijst_naam }}</td>
       <td>{{ i.vragenlijst_id }}</td>
       <td>
-        <button type="button" class="btn btn-info">
+        <button (click)="clickEdit(i.ingevulde_vragenlijst_id)" type="button" class="btn btn-info">
           <i class="bi bi-pencil"></i>
         </button>
       </td>

@@ -37,7 +37,8 @@ export class AccountsbeheerComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private service: UserService,
               private vService: VragenlijstService,
-              private iService: IngevuldevragenlijstService
+              private iService: IngevuldevragenlijstService,
+              private router:Router
   ) {this.subject = this.iService.subjectSimple;
   }
 
@@ -66,6 +67,9 @@ export class AccountsbeheerComponent implements OnInit {
 
   private getAllIngevuldeLijsten() {
     return this.iService.getIngevuldeVragenlijstSimple(this.id);
+  }
+  public clickEdit(id:number){
+    this.router.navigate([`vragenlijstMedewerker/${id}`]);
   }
 }
 

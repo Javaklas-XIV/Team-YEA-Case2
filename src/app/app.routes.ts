@@ -15,6 +15,9 @@ import {AccountbeheerClientComponent} from "./components/accountbeheer-client/ac
 import {
   VragenlijstenOverzichtClientComponent
 } from "./components/vragenlijsten-overzicht-client/vragenlijsten-overzicht-client.component";
+import {
+  VragenlijstInvullenMedewerkerComponent
+} from "./components/vragenlijst-invullen-medewerker/vragenlijst-invullen-medewerker.component";
 
 
 export const routes: Routes = [
@@ -28,7 +31,8 @@ export const routes: Routes = [
   {path: 'admin', component: MedewerkerOverzichtComponent, canActivate: [authGuardMedewerker]},
   {path: 'account', component: AccountbeheerClientComponent, canActivate: [authGuardClient]},
   {path: 'uwvragenlijsten', component: VragenlijstenOverzichtClientComponent, canActivate: [authGuardClient]},
-  {path: 'vragenlijst/:id', component: VragenlijstInvullenComponent}
+  {path: 'vragenlijst/:id', component: VragenlijstInvullenComponent},
+  {path: 'vragenlijstMedewerker/:id', component: VragenlijstInvullenMedewerkerComponent}
 ];
 ``
 @NgModule({

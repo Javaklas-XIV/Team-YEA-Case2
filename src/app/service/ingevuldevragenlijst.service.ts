@@ -35,6 +35,12 @@ export class IngevuldevragenlijstService {
     return tempObservable;
   }
 
+  getAlleIngevuldeVragenlijstenByUserId(userId:number) {
+    let tempObservable = this.http.get<IngevuldeVragenlijst[]>(`http://localhost:9080/yea-backend/ingevuldevragenlijsten?userId=${userId}`)
+    tempObservable.subscribe(result => this._subjectAll.next(result));
+    return tempObservable;
+  }
+
   remove(i: IngevuldeVragenlijst) {
     return this.http.delete<IngevuldeVragenlijst>(`http://localhost:9080/yea-backend/ingevuldevragenlijsten/${i.ingevulde_vragenlijst_id}`);
   }

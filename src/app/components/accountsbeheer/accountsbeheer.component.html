@@ -48,6 +48,9 @@
                 {{ i.vragenlijst_id }}
               </div>
             </div>
+            <button (click)="clickEdit(i.ingevulde_vragenlijst_id)" type="button" class="btn btn-info">
+              <i class="bi bi-pencil"></i>
+            </button>
           </li>
         </ul>
       </div>

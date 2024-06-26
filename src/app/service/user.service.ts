@@ -26,11 +26,18 @@ export class UserService {
         next: (response: HttpResponse<User>): void => {
           const loggedInUser = response.body ?? UserService.emptyUser;
           const token = loggedInUser.token;
+          const userId = loggedInUser.ID;
           if (token) {
             localStorage.setItem('token', JSON.stringify(token));
             this.successfulLogin(loggedInUser);
           } else {
             this.message$.next("Naam of wachtwoord is fout ingevoerd");
+          }
+          if (token) {
+            localStorage.setItem('ID', JSON.stringify(userId));
+            //this.successfulLogin(loggedInUser);
+          } else {
+            //this.message$.next("Naam of wachtwoord is fout ingevoerd");
           }
         },
         error: (errorResponse) => {
