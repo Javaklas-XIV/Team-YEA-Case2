@@ -80,8 +80,7 @@ export class VragenlijstInvullenComponent {
     console.log("vdto:", this.ingevuldeVragenlijst.vragenLijstDto)
     const a = Array.from(this.antwoordenMap.values());
     const iv: IngevuldeVragenlijst = {
-      // id: this.ingevuldeVragenlijst.id,
-      id: 5,
+      id: this.ingevuldeVragenlijst.id,
       antwoorden: a,
       vragenLijstDto: this.ingevuldeVragenlijst.vragenLijstDto,
       userId: this.ingevuldeVragenlijst.userId} as IngevuldeVragenlijst;

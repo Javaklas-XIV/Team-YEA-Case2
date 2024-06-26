@@ -14,6 +14,7 @@ export class IngevuldeVragenlijstService {
   constructor(private httpClient: HttpClient) { }
 
   getIngevuldeVragenlijst(id: number) {
+    console.log("url:",`${this.URL}/${id}`);
     return this.httpClient.get<IngevuldeVragenlijst>(`${this.URL}/${id}`)
   }
 
