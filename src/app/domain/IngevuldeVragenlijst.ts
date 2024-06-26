@@ -1,6 +1,7 @@
 export interface IngevuldeVragenlijst{
-  id: number;
   date: Date;
-  vragenlijst_id: number;
+  ingevulde_vragenlijst_id: number;
   vragenlijst_naam: string;
+  name: String;
+  vragenlijst_id: number;
 }
