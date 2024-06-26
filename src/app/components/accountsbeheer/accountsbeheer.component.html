@@ -18,10 +18,10 @@
           <li class="list-group-item mb-3" *ngFor="let i of (subject | async)">
             <div class="row">
               <div class="col-md-3">
-                <strong>Ingevulde vragenlijst ID:</strong>
+                <strong>Vragenlijst ID:</strong>
               </div>
               <div class="col-md-9">
-                {{ i.vragenlijst_id }}
+                {{ i.ingevulde_vragenlijst_id }}
               </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
             </div>
             <div class="row">
               <div class="col-md-3">
-                <strong>Vragenlijst ID:</strong>
+                <strong>Ingevulde vragenlijst ID:</strong>
               </div>
               <div class="col-md-9">
                 {{ i.vragenlijst_id }}

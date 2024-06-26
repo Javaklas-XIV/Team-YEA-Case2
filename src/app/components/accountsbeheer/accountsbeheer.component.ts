@@ -38,7 +38,7 @@ export class AccountsbeheerComponent implements OnInit {
               private service: UserService,
               private vService: VragenlijstService,
               private iService: IngevuldevragenlijstService
-  ) {   this.subject = this.iService.subject;
+  ) {this.subject = this.iService.subjectSimple;
   }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class AccountsbeheerComponent implements OnInit {
     this.id = Number(idParam)
     this.user$ = this.service.findUser(this.id);
     this.vragenlijst$ = this.vService.findVragenlijsten()
-    this.ingevuldeVragenlijst$ = this.iService.getIngevuldeVragenlijstDates(this.id)
+    this.ingevuldeVragenlijst$ = this.iService.getIngevuldeVragenlijstSimple(this.id)
   }
 
   onCheckboxChange(id: number) {
@@ -60,8 +60,12 @@ export class AccountsbeheerComponent implements OnInit {
           this.magInvullenlijst.push(Number(id));
         }
       }
-      this.iService.activateVragenlijst(this.id, this.magInvullenlijst);
+      this.iService.activateVragenlijst(this.id, this.magInvullenlijst).subscribe(() => this.getAllIngevuldeLijsten());
     }
+  }
+
+  private getAllIngevuldeLijsten() {
+    return this.iService.getIngevuldeVragenlijstSimple(this.id);
   }
 }
 

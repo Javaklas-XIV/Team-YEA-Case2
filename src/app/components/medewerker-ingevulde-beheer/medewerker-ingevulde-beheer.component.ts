@@ -29,7 +29,7 @@ export class MedewerkerIngevuldeBeheerComponent implements OnInit{
               private service: UserService,
               private vService: VragenlijstService,
               private iService: IngevuldevragenlijstService
-  ) {this.subject = this.iService.subject;}
+  ) {this.subject = this.iService.subjectAll;}
 
   ngOnInit() {
     this.ingevuldeVragenlijsten$ = this.iService.getAlleIngevuldeVragenlijsten()
