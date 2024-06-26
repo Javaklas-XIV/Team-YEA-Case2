@@ -4,10 +4,10 @@
       <a class="navbar-brand"> Welkom Medewerker! </a>
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item active">
-          <button type="button" class="btn btn-outline-primary mr-2">Ingevulde Vragenlijsten</button>
+          <button (click)="goToIngevulde()" type="button" class="btn btn-outline-primary mr-2">Ingevulde Vragenlijsten</button>
         </li>
         <li class="nav-item">
-          <button type="button" class="btn btn-outline-primary mr-2" >Vragenlijst Beheer</button>
+          <button (click)="goToVragenlijst()" type="button" class="btn btn-outline-primary mr-2" >Vragenlijst Beheer</button>
         </li>
           <li class="nav-item">
             <button (click)="goToAccount()" type="button" class="btn btn-outline-primary">Accountbeheer Clienten</button>
