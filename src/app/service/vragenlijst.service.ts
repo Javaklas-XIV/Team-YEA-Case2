@@ -11,8 +11,8 @@ export class VragenlijstService {
   URL = `${environment.backendUrl}/vragenlijsten`;
   constructor(private httpClient: HttpClient) { }
 
-  getVragenlijst() {
-    return this.httpClient.get<VragenlijstOnderdeel[]>(`${this.URL}/1`)
+  getVragenlijst(id: number) {
+    return this.httpClient.get<VragenlijstOnderdeel[]>(`${this.URL}/${id}`)
   }
 
 

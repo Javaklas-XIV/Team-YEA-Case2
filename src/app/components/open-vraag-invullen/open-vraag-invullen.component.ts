@@ -16,12 +16,20 @@ import {FormsModule} from "@angular/forms";
 })
 export class OpenVraagInvullenComponent {
   @Input() openVraag?: OpenVraag;
+  @Input() antwoorden?: Map<number,Antwoord>;
   @Output() antwoordGegeven = new EventEmitter<OpenAntwoord>();
 
-  protected antwoord: string = "";
+  protected antwoord = "";
+
+  ngOnInit() {
+    // this.antwoord = (this.antwoorden?.find(antwoord => antwoord.vraagID === this.openVraag?.formObjectId) as OpenAntwoord).antwoord ?? "";
+    // this.antwoord = (this.antwoorden?.at(0) as OpenAntwoord).antwoord;
+    this.antwoord = (this.antwoorden?.get(this.openVraag?.formObjectId ?? 0) as OpenAntwoord).antwoord ?? "";
+  }
+
 
   stuurAntwoord() {
-    let openAntwoord: OpenAntwoord = {antwoord: this.antwoord, vraagID: this.openVraag?.vraagnummer ?? -1, type:"O"};
+    let openAntwoord: OpenAntwoord = {antwoord: this.antwoord, vraagID: this.openVraag?.formObjectId ?? -1, type:"O"};
     this.antwoordGegeven.emit(openAntwoord);
   }
 }
