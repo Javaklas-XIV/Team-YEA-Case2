@@ -6,15 +6,18 @@ import {MedewerkerOverzichtComponent} from "./components/medewerker-overzicht/me
 import {AccountbeheerComponent} from "./components/accountbeheer/accountbeheer.component";
 import {authGuardClient} from "./guards/authGuardClient";
 import {authGuardMedewerker} from "./guards/authGuardMedewerker";
+import {VragenlijstInvullenComponent} from "./components/vragenlijst-invullen/vragenlijst-invullen.component";
+import {AppComponent} from "./app.component";
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'login', component: LoginComponent},
   {path: 'home', component: OverzichtComponent, canActivate: [authGuardClient]},
   {path: 'admin/accountbeheer', component: AccountbeheerComponent, canActivate: [authGuardMedewerker]},
-  {path: 'admin', component: MedewerkerOverzichtComponent, canActivate: [authGuardMedewerker]}
+  {path: 'admin', component: MedewerkerOverzichtComponent, canActivate: [authGuardMedewerker]},
+  {path: 'vragenlijst/:id', component: VragenlijstInvullenComponent},
 ];
-
+``
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
