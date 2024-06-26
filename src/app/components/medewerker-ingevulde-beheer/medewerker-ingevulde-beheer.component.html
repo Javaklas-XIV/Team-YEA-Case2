@@ -17,7 +17,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let i of (ingevuldeVragenlijsten$ | async)">
+    <tr *ngFor="let i of (subject | async)">
       <td>{{ i.name }}</td>
       <td>{{ i.ingevulde_vragenlijst_id }}</td>
       <td>{{ i.date }}</td>

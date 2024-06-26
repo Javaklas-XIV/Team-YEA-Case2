@@ -5,7 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../service/user.service";
 import {VragenlijstService} from "../../service/vragenlijst.service";
 import {IngevuldevragenlijstService} from "../../service/ingevuldevragenlijst.service";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {IngevuldeVragenlijst} from "../../domain/IngevuldeVragenlijst";
 import {User} from "../../domain/User";
 
@@ -23,12 +23,13 @@ import {User} from "../../domain/User";
 export class MedewerkerIngevuldeBeheerComponent implements OnInit{
 
   ingevuldeVragenlijsten$: Observable<IngevuldeVragenlijst[]> | undefined;
+  public subject: Subject<IngevuldeVragenlijst[]>;
 
   constructor(private route: ActivatedRoute,
               private service: UserService,
               private vService: VragenlijstService,
               private iService: IngevuldevragenlijstService
-  ) {}
+  ) {this.subject = this.iService.subject;}
 
   ngOnInit() {
     this.ingevuldeVragenlijsten$ = this.iService.getAlleIngevuldeVragenlijsten()
@@ -38,7 +39,6 @@ export class MedewerkerIngevuldeBeheerComponent implements OnInit{
     if (confirm('Wil je deze ingevulde vragenlijst echt verwijderen?')) {
       this.iService.remove(i).subscribe(() => this.getAllIngevuldeVragenLijsten());
     }
-    window.location.reload();
   }
 
   private getAllIngevuldeVragenLijsten() {

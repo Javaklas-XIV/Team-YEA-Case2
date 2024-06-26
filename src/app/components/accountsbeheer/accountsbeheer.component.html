@@ -14,8 +14,8 @@
     <li class="list-group-item">
       <div class="container mt-4">
         <h6 class="mb-4">Toegekende Vragenlijsten: </h6>
-        <ul class="list-group" *ngIf="ingevuldeVragenlijst$ | async as ingevuldeVragenlijst">
-          <li class="list-group-item mb-3" *ngFor="let i of ingevuldeVragenlijst">
+        <ul class="list-group">
+          <li class="list-group-item mb-3" *ngFor="let i of (subject | async)">
             <div class="row">
               <div class="col-md-3">
                 <strong>Ingevulde vragenlijst ID:</strong>
@@ -86,10 +86,10 @@
     </tr>
     </tbody>
     <button (click)="save()" type="button" class="btn btn-outline-primary" id="button">Save</button>
-    <div>
-      <label class="form-label pt-2" style="color: #020000" for="button">{{ message$ | async }}</label>
-    </div>
   </table>
+  <div>
+    <label class="form-label pt-2" style="color: #020000" for="button">{{ message$ | async }}</label>
+  </div>
 </div>
 
 

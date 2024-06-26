@@ -32,12 +32,14 @@ export class AccountsbeheerComponent implements OnInit {
   magInvullenlijst: number[] = [];
   id: number = 0;
   message$ = this.iService.message$;
+  public subject: Subject<IngevuldeVragenlijst[]>;
 
   constructor(private route: ActivatedRoute,
               private service: UserService,
               private vService: VragenlijstService,
               private iService: IngevuldevragenlijstService
-  ) {}
+  ) {   this.subject = this.iService.subject;
+  }
 
   ngOnInit() {
     const idParam = this.route.snapshot.paramMap.get('ID')
@@ -59,7 +61,6 @@ export class AccountsbeheerComponent implements OnInit {
         }
       }
       this.iService.activateVragenlijst(this.id, this.magInvullenlijst);
-      window.location.reload();
     }
   }
 }
